@@ -1,4 +1,9 @@
-<app-characters-list />
+<!-- @if (charactersToGiveToChild) {
+    <app-characters-list [charactersFromParent]="charactersToGiveToChild" />
+} -->
+
+<app-characters-list [variableFromParent]="variableToGiveToChild" />
+
 
 
 <router-outlet />
