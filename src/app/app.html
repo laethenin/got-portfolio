@@ -1,8 +1,12 @@
-<!-- @if (charactersToGiveToChild) {
+@if (charactersToGiveToChild) {
     <app-characters-list [charactersFromParent]="charactersToGiveToChild" />
-} -->
+}
 
-<app-characters-list [variableFromParent]="variableToGiveToChild" />
+<!-- <app-characters-list [variableFromParent]="variableToGiveToChild" /> -->
+
+@if (continentsToGiveToChild) {
+    <app-continents-list [continentsFromParent]="continentsToGiveToChild" />
+}
 
 
 

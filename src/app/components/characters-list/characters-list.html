@@ -1,14 +1,18 @@
-<!-- <div class="characters-wrapper">
+<h1>Les Personnages de Game of Thrones</h1>
+<div class="characters-wrapper">
     @for (character of charactersFromParent; track character.id) {
         <div class="character-card">
-            <h1>{{ character.firstName }}</h1>
-            <p>{{ character.title }}</p>
-            <strong>{{ character.family }}</strong>
+            <h2>{{ character.fullName }}</h2>
+            <p>First Name : {{ character.firstName }}</p>
+            <p>Last Name : {{ character.lastName }}</p>
+            <p>Title : {{ character.title }}</p>
+            <p>Family : {{ character.family }}</p>
+            <p><img src="{{ character.imageUrl }}" alt="{{ character.fullName }}" /></p>
         </div>
     } @empty {
         <p>Aucun personnage trouvé.</p>
     }
-</div> -->
+</div>
 
-{{ variableFromParent }}
+<!-- {{ variableFromParent }} -->
  
