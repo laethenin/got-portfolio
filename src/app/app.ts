@@ -14,6 +14,7 @@ import { ContinentService } from './shared/services/continent';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
+
 export class App implements OnInit {
   private charactersService = inject(CharacterService);
   protected charactersToGiveToChild!: Characters[];
@@ -24,21 +25,50 @@ export class App implements OnInit {
 
   private cdr = inject(ChangeDetectorRef);
 
+  protected filteredCharacters: Characters[] = [];
+
   ngOnInit(){
-    this.charactersService.getCharacters().subscribe((charactersFromApi: Characters[]) => {  
-      this.charactersToGiveToChild = charactersFromApi;
-      this.cdr.detectChanges();
-      console.log(this.charactersToGiveToChild);
-      console.log(charactersFromApi);
-      console.log(this.variableToGiveToChild);
-  });
+    this.getCharactersInTemplate();
+    this.getContinentsInTemplate();
+  
 
-  this.continentsService.getAllContinents().subscribe((continentsFromApi: Continents[]) => {  
-      this.continentsToGiveToChild = continentsFromApi;
-      this.cdr.detectChanges();
-      console.log(this.continentsToGiveToChild);
-      console.log(continentsFromApi);
-  })
-}
+    // protected onSearch(term: string): void {
+    //   this.filteredCharacters = this.charactersToGiveToChild.filter((character: Characters) => {
+    //     const fullName = character.fullName ?? '';
+    //     console.log(fullName.toLowerCase().includes(term.toLowerCase()));
+    //     return fullName.toLowerCase().includes(term.toLowerCase());      
+    //   })
+    // }
+
+     if (this.charactersToGiveToChild) {
+        this.filteredCharacters = [...this.charactersToGiveToChild];
+     }
+    }
+
+protected onSearch(term: string): void {
+  if (!term) {
+    this.filteredCharacters = [...this.charactersToGiveToChild];
+  } else {
+    this.filteredCharacters = this.charactersToGiveToChild.filter((character: Characters) => {
+      const fullName = character.fullName ?? '';
+      return fullName.toLowerCase().includes(term.toLowerCase());      
+    });
+  }
 }
 
+    private getCharactersInTemplate() {
+      this.charactersService.getCharacters().subscribe((charactersFromApi: Characters[]) => {  
+        this.charactersToGiveToChild = charactersFromApi;
+        this.filteredCharacters = charactersFromApi;
+        this.cdr.detectChanges();
+      })
+    }
+
+    private getContinentsInTemplate() {
+      this.continentsService.getAllContinents().subscribe((continentsFromApi: Continents[]) => {  
+        this.continentsToGiveToChild = continentsFromApi;
+        this.cdr.detectChanges();
+      })
+    }
+  }
+  

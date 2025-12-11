@@ -1,18 +1,12 @@
-<h1>Les Continents de Game of Thrones</h1>
+<h2>Les Continents de Game of Thrones</h2>
 <div class="continents-wrapper">
     @for (continent of continentsFromParent; track continent.id) {
         <div class="continent-card">
-            <h2>{{ continent.name }}</h2>
+            <h3>{{ continent.name }}</h3>
         </div>
     } @empty {
         <p>Aucun continent trouvé.</p>
     }
 </div>
 
-<!-- <h1>Les Continents de Game of Thrones</h1>
-<div class="continents-list">
-  <div class="continent-item" *ngFor="let continent of continentsFromParent">
-    {{ continent.name }}
-  </div>
-</div> -->
 
