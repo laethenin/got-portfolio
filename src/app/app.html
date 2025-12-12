@@ -1,22 +1,2 @@
-<header><h1>A SONG OF ICE AND FIRE</h1></header>
-
-<input #searchInput type="text" placeholder="Search characters" (input)="onSearch(searchInput.value)" > 
-<p class="search-count" *ngIf="filteredCharacters.length >= 0">
-  {{ filteredCharacters.length }} résultat{{ filteredCharacters.length > 1 ? 's' : '' }} trouvé{{ filteredCharacters.length > 1 ? 's' : '' }}
-</p>
-
-@if (charactersToGiveToChild) {
-    <app-characters-list [charactersFromParent]="filteredCharacters" />
-}
-
-<!-- <app-characters-list [variableFromParent]="variableToGiveToChild" /> -->
-
-@if (continentsToGiveToChild) {
-    <app-continents-list [continentsFromParent]="continentsToGiveToChild" />
-}
-
-<footer>WINTER IS COMING</footer>
-
-
 
 <router-outlet />

@@ -1,0 +1,37 @@
+<header><h1>A SONG OF ICE AND FIRE</h1></header>
+
+<!-- <div [ngClass] = "{fire: isFire, ice: isIce}">
+  <h2>Coucou, l'état de isFire est {{ isFire }}.</h2>
+  <button (click)="toogleSelected()">Toggle isFire</button>
+</div>
+
+<div [ngStyle]="isFire ? { 'color': 'white', 'background-color': 'red', 'padding.px': 10 } : { 'color': 'black', 'background-color': 'transparent' }">
+  <h2>ngStyle — plusieurs styles (isFire = {{ isFire }})</h2>
+  <button (click)="toogleSelected()">Toggle isFire</button>
+</div> -->
+
+<!-- <div>
+  <h2 [style.color]="isFire ? 'orange' : 'blue'">
+    Un seul style (color) — isFire = {{ isFire }}
+  </h2>
+  <button (click)="toogleSelected()">Toggle isFire</button>
+</div> -->
+
+<input #searchInput type="text" placeholder="Search characters" (input)="onSearch(searchInput.value)" > 
+
+@if (searchTerm) {
+  <div class="search-results">
+    {{ filteredCharacters.length }} résultat(s) trouvé(s)
+  </div>
+}
+
+@if (charactersToGiveToChild) {
+    <app-characters-list [charactersFromParent]="filteredCharacters" />
+}
+
+@if (continentsToGiveToChild) {
+    <app-continents-list [continentsFromParent]="continentsToGiveToChild" />
+}
+
+<footer>WINTER IS COMING</footer>
+

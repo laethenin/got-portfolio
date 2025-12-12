@@ -1,15 +1,17 @@
 <h2>Les Personnages de Game of Thrones</h2>
 <div class="characters-wrapper">
     @for (character of charactersFromParent; track character.id) {
-        <div class="character-card">
-            <h3>{{ character.fullName }}</h3>          
-            <p class="character-title">{{ character.title }}</p>
+        <div class="character-card" [id]="character.family | slugify" 
+  [attr.data-family]="character.family | slugify">
             <p><img [src]="character.imageUrl" [alt]="character.fullName" /></p>
+            <h3>{{ character.fullName | custom: (character.family ?? '') }}</h3>          
+            <p class="character-title">{{ character.title }}</p>
+            <p class="character-family">{{ character.family }}</p>
         </div>
     } @empty {
         <p>Aucun personnage trouvé.</p>
     }
 </div>
 
-<!-- {{ variableFromParent }} -->
+
  
