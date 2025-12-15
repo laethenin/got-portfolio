@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { inject, ChangeDetectorRef } from '@angular/core';
 import { CharacterService } from '../../shared/services/character';
 import { Characters } from '../../shared/models/characters.model';
@@ -6,6 +6,7 @@ import { Continents } from '../../shared/models/continents.model';
 import { ContinentService } from '../../shared/services/continent';
 import { CharactersList } from '../characters-list/characters-list';
 import { ContinentsList } from '../continents-list/continents-list';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,8 @@ import { ContinentsList } from '../continents-list/continents-list';
   styleUrl: './home.scss',
 })
 
-export class Home implements OnInit {
+export class Home implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('searchInput') private input!: ElementRef<HTMLInputElement>;
   private charactersService = inject(CharacterService);
   protected charactersToGiveToChild!: Characters[];
 
@@ -27,12 +29,18 @@ export class Home implements OnInit {
   protected filteredCharacters: Characters[] = [];
   protected searchTerm: string = '';
 
+  private subscriptions: Subscription [] = [];
+
   // protected isFire = false;
   // protected isIce = true;
 
   ngOnInit(){
     this.getCharactersInTemplate();
     this.getContinentsInTemplate();
+  }
+
+  ngAfterViewInit() {
+    this.input.nativeElement.focus();
   }
 
     // protected toogleSelected(){
@@ -53,18 +61,22 @@ export class Home implements OnInit {
     }
 
     private getCharactersInTemplate() {
-      this.charactersService.getCharacters().subscribe((charactersFromApi: Characters[]) => {  
+      this.subscriptions.push(this.charactersService.getCharacters().subscribe((charactersFromApi: Characters[]) => {  
         this.charactersToGiveToChild = charactersFromApi;
         this.filteredCharacters = charactersFromApi;
         this.cdr.detectChanges();
-      })
+      }))
     }
 
     private getContinentsInTemplate() {
-      this.continentsService.getAllContinents().subscribe((continentsFromApi: Continents[]) => {  
+      this.subscriptions.push(this.continentsService.getAllContinents().subscribe((continentsFromApi: Continents[]) => {  
         this.continentsToGiveToChild = continentsFromApi;
         this.cdr.detectChanges();
-      })
+      }))
+    }
+
+    ngOnDestroy(){
+      this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
     }
 
 }

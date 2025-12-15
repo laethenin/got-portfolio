@@ -11,6 +11,7 @@ import { CitiesModel } from '../../../shared/models/cities.model';
   templateUrl: './cities.html',
   styleUrl: './cities.scss',
 })
+
 export class Cities implements OnInit {
   protected currentTitle = '';
   private activatedRoute = inject(ActivatedRoute);
@@ -23,6 +24,7 @@ export class Cities implements OnInit {
    ngOnInit() {
       this.getCities();
       this.currentTitle = this.titleService.getTitle();
+      // this.getTitle();
   }
 
   private getCities() {
@@ -39,6 +41,10 @@ export class Cities implements OnInit {
       }
     });
   }
+
+  // private getTitle() {
+  //   this.currentTitle = this.titleService.getTitle();
+  // }
 
    protected onSearch(term: string): void {
          console.log('ONSEARCH CALLED | term=', term);
