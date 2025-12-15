@@ -1,0 +1,53 @@
+/* not-found.scss */
+
+/* Wrapper principal centré */
+.not-found-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #1a1a1a; /* sombre façon GOT */
+  font-family: 'Cinzel', serif;
+  color: #f5f5f5;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Gros titre 404 */
+.not-found-title {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #ffd700; /* doré GOT */
+  text-shadow: 
+    2px 2px 4px rgba(0,0,0,0.7), 
+    0 0 10px rgba(255,215,0,0.6);
+  margin-bottom: 20px;
+}
+
+/* Message explicatif */
+.not-found-message {
+  font-size: 1.5rem;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+/* Bouton retour Home */
+.not-found-home {
+  padding: 10px 20px;
+  border: 2px solid #444;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #f5f5f5;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #444;
+    border-color: #ffd700;
+    color: #ffd700;
+    box-shadow: 0 0 15px rgba(255,215,0,0.6);
+  }
+}

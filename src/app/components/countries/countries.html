@@ -2,7 +2,22 @@
 
 <button (click)="changeTitle()">Change Title</button> -->
 
-@for (country of countries; track country.id) {
-  <h4>{{country.id}} - {{country.name }}</h4>
-}
+<!-- @for (country of countries; track country.id) {
+  <button type="button" (click)="goToCountryDetails(country.id)">
+    {{country.id}} - {{country.name }}
+  </button>
+} -->
+
+<div class="countries-wrapper">
+  @for (country of countries; track country.id) {
+    <div class="country-card" (click)="goToCountryDetails(country.id)">
+      <div class="country-name">{{ country.name }}</div>
+      <div class="country-info">ID: {{ country.id }}</div>
+      <button class="country-action">Voir détails</button>
+    </div>
+  }
+</div>
+
+
+<router-outlet />
 

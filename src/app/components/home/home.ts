@@ -7,6 +7,7 @@ import { ContinentService } from '../../shared/services/continent';
 import { CharactersList } from '../characters-list/characters-list';
 import { ContinentsList } from '../continents-list/continents-list';
 
+
 @Component({
   selector: 'app-home',
   imports: [CharactersList, ContinentsList],

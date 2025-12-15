@@ -1,0 +1,7 @@
+<!-- <p>cities works!</p> -->
+
+<h1>{{ currentTitle }}</h1>
+
+<input #searchInput type="text" placeholder="Search Cities" (input)="onSearch(searchInput.value)" >
+
+<app-cities-list [citiesFromParent]="filteredCities" />
