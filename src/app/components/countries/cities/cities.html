@@ -1,7 +1,7 @@
-<!-- <p>cities works!</p> -->
-
 <h1>{{ currentTitle }}</h1>
 
-<input #searchInput type="text" placeholder="Search Cities" (input)="onSearch(searchInput.value)" >
+<!-- <input #searchInput type="text" placeholder="Rechercher une ville" (input)="onSearch(searchInput.value)" >
 
-<app-cities-list [citiesFromParent]="filteredCities" />
+<app-cities-list [citiesFromParent]="filteredCities" (cityCreated)="addCity($event)"/> -->
+
+<app-cities-list [citiesFromParent]="cities" (cityCreated)="addCity($event)"/>

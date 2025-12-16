@@ -1,0 +1,26 @@
+footer {
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+
+  background: linear-gradient(
+    to bottom,
+    #e8f7ff,
+    #d4eefc,
+    #c0e4fa
+  );
+  color: #0a2a3d;
+
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+
+  border-top: 3px solid #a8d7f4;
+  border-bottom: 3px solid #bbdefb;
+
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+
+  box-shadow: 0 -5px 20px rgba(180, 220, 255, 0.5);
+
+  backdrop-filter: blur(4px);
+}

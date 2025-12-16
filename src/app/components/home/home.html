@@ -1,7 +1,7 @@
-<header>
-  <h1>A SONG OF ICE AND FIRE</h1>
+
+<h1>L'Univers de Game of Thrones</h1>
   
-</header>
+
 
 <!-- <div [ngClass] = "{fire: isFire, ice: isIce}">
   <h2>Coucou, l'état de isFire est {{ isFire }}.</h2>
@@ -20,7 +20,7 @@
   <button (click)="toogleSelected()">Toggle isFire</button>
 </div> -->
 
-<input #searchInput type="text" placeholder="Search characters" (input)="onSearch(searchInput.value)" > 
+<input #searchInput type="text" placeholder="Rechercher un personnage" (input)="onSearch(searchInput.value)" > 
 
 @if (searchTerm) {
   <div class="search-results">
@@ -36,5 +36,5 @@
     <app-continents-list [continentsFromParent]="continentsToGiveToChild" />
 }
 
-<footer>WINTER IS COMING</footer>
+
 

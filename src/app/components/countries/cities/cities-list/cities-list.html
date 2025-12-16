@@ -1,10 +1,50 @@
-<!-- <p>cities-list works!</p> -->
+<h2>Ajouter une cité</h2>
+
+<button (click)="displayAddCityForm()">
+  {{ displayCityForm ? 'Fermer le formulaire' : 'Ajouter une cité' }}
+</button>
+@if (displayCityForm) {
+<div [formGroup]="cityForm">
+    <input
+      type="text"
+      name="name"
+      placeholder="Nom de la ville"
+      formControlName="name"
+    />
+    <input
+      type="number"
+      name="inhabitants"
+      placeholder="Nombre d'habitants"
+      formControlName="inhabitants"
+    />
+    <input
+      type="text"
+      name="typicalDish"
+      placeholder="Plat typique"
+      formControlName="typicalDish"
+    />
+    <input
+      type="text"
+      name="currency"
+      placeholder="Monnaie"
+      formControlName="currency"
+    />
+    <input
+      type="text"
+      name="flag"
+      placeholder="Drapeau"
+      formControlName="flag"
+    />
+    <button (click)="addCity()">Valider</button>
+</div>
+}
+
 
 <div class="cities-list-wrapper">
   @for (city of citiesFromParent; track city.id) {
   <div class="city-card">
     <div class="city-flag">{{ city.flag }}</div>
-    <div class="city-name">{{ city.name }}</div>
+    <div appHoverHighlight class="city-name">{{ city.name }}</div>
     <div class="city-info city-dish">Plat typique: {{ city.typicalDish }}</div>
     <div class="city-info city-stats">
       Habitants: {{ city.inhabitants }}<br>

@@ -9,48 +9,52 @@ import { CountriesModel } from '../../shared/models/countries.model';
   templateUrl: './countries.html',
   styleUrl: './countries.scss',
 })
+
 export class Countries implements OnInit {
   protected currentTitle = '';
+  protected countries: CountriesModel[] = [];
+
   private activatedRoute = inject(ActivatedRoute);
   private titleService = inject(Title);
   private router = inject(Router);
-  protected countries: CountriesModel[] = [];
+  
 
   ngOnInit() {
-    if (!this.hasActiveChild()) {
-      this.getCountries();
-    }
-
-    this.activatedRoute.title.subscribe(title => {
-      this.currentTitle = title || '';
-      this.titleService.setTitle(this.currentTitle);
-    });
-
-    this.router.events.subscribe(() => {
-      if (!this.hasActiveChild() && this.countries.length === 0) {
-        this.getCountries();
-      } else if (this.hasActiveChild()) {
-        this.countries = [];
-      }
-    });
+    this.getCountries();
+    this.currentTitle = this.titleService.getTitle();
   }
 
-  private hasActiveChild(): boolean {
-    const url = this.router.url;
-    return url.includes('/countries/cities') || url.match(/\/countries\/\d+/) !== null;
-  }
-//     this.getCountries();
-//     this.currentTitle = this.titleService.getTitle();
-// }
-//   protected changeTitle() {
-//     this.titleService.setTitle('Pays');
-//     this.currentTitle = this.titleService.getTitle();
-//   }
+  //   if (!this.hasActiveChild()) {
+  //     this.getCountries();
+  //   }
+
+  //   this.activatedRoute.title.subscribe(title => {
+  //     this.currentTitle = title || '';
+  //     this.titleService.setTitle(this.currentTitle);
+  //   });
+
+  //   this.router.events.subscribe(() => {
+  //     if (!this.hasActiveChild() && this.countries.length === 0) {
+  //       this.getCountries();
+  //     } else if (this.hasActiveChild()) {
+  //       this.countries = [];
+  //     }
+  //   });
+  // }
+
+  // private hasActiveChild(): boolean {
+  //   const url = this.router.url;
+  //   return url.includes('/countries/cities') || url.match(/\/countries\/\d+/) !== null;
+  // }
+
+   protected changeTitle() {
+     this.titleService.setTitle('Pays');
+     this.currentTitle = this.titleService.getTitle();
+   }
 
   private getCountries() {
     this.activatedRoute.data.subscribe((data) => {
-      this.countries = data['countries'] as CountriesModel[];
-      console.log(data['countries']);
+      this.countries = data['countries'];
     })
   }
 

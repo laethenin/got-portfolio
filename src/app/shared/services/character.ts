@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
 export class CharacterService {
   private charactersUrl = 'https://thronesapi.com/api/v2/Characters';
   private httpClient = inject(HttpClient);
