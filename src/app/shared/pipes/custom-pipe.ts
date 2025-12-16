@@ -31,13 +31,19 @@ export class CustomPipe implements PipeTransform {
       case 'targaryen':
         emoji = '🔥';  // Feu
         break;
+      case 'targaryan':
+        emoji = '🔥';  // Feu
+        break;
       case 'lannister':
         emoji = '🦁';  // Lion
         break;
+      case 'lanister':
+        emoji = '🦁';  // Lion
+        break;  
       case 'baratheon':
         emoji = '🦌';  // Cerf
         break;
-      case 'greyjoy':
+      case 'greyjoy': 
         emoji = '🐙';  // Kraken
         break;
       case 'tyrell':
