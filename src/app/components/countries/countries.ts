@@ -20,32 +20,32 @@ export class Countries implements OnInit {
   
 
   ngOnInit() {
-    this.getCountries();
-    this.currentTitle = this.titleService.getTitle();
+  //   this.getCountries();
+  //   this.currentTitle = this.titleService.getTitle();
+  // }
+
+    if (!this.hasActiveChild()) {
+      this.getCountries();
+    }
+
+    this.activatedRoute.title.subscribe(title => {
+      this.currentTitle = title || '';
+      this.titleService.setTitle(this.currentTitle);
+    });
+
+    this.router.events.subscribe(() => {
+      if (!this.hasActiveChild() && this.countries.length === 0) {
+        this.getCountries();
+      } else if (this.hasActiveChild()) {
+        this.countries = [];
+      }
+    });
   }
 
-  //   if (!this.hasActiveChild()) {
-  //     this.getCountries();
-  //   }
-
-  //   this.activatedRoute.title.subscribe(title => {
-  //     this.currentTitle = title || '';
-  //     this.titleService.setTitle(this.currentTitle);
-  //   });
-
-  //   this.router.events.subscribe(() => {
-  //     if (!this.hasActiveChild() && this.countries.length === 0) {
-  //       this.getCountries();
-  //     } else if (this.hasActiveChild()) {
-  //       this.countries = [];
-  //     }
-  //   });
-  // }
-
-  // private hasActiveChild(): boolean {
-  //   const url = this.router.url;
-  //   return url.includes('/countries/cities') || url.match(/\/countries\/\d+/) !== null;
-  // }
+  private hasActiveChild(): boolean {
+    const url = this.router.url;
+    return url.includes('/countries/cities') || url.match(/\/countries\/\d+/) !== null;
+  }
 
    protected changeTitle() {
      this.titleService.setTitle('Pays');
